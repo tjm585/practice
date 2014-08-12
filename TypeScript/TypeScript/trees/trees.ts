@@ -4,6 +4,12 @@ module Trees {
     export class Tree {
         root: Node;
 
+        /**
+         * Inserts a new node into the tree.
+         *
+         * @this (Tree)
+         * @param (number) value The value to be inserted.
+         */
         public insert(value: number): void {
             if (!this.root) {
                 this.root = new Node(value, null);
@@ -12,7 +18,14 @@ module Trees {
                 this._insertHelper(value, this.root);
             }
         }
-
+        
+        /**
+         * Inserts a new node into the tree.
+         *
+         * @this (Tree)
+         * @param (number) value The value to be inserted.
+         * @param (Node) node The node to insert under.
+         */
         private _insertHelper(value: number, node: Node) {
             if (node.value > value) {
                 if (!node.left) {
@@ -34,7 +47,14 @@ module Trees {
                 throw "equal case not handled";
             }
         }
-
+        
+        /**
+         * Replaces the inputted node with another node.
+         *
+         * @this (Tree)
+         * @param (Node) node The node to replace.
+         * @param (Node) replacement The node to replace with.
+         */
         private _replaceInParent(node: Node, replacement: Node): void {
             var parent = node.parent;
             if (parent.left && node.value === parent.left.value) {
@@ -48,7 +68,14 @@ module Trees {
                 replacement.parent = parent;
             }
         }
-
+        
+        /**
+         * Deletes a node from the tree.
+         *
+         * @this (Tree)
+         * @param (number) value The value to delete.
+         * @param (Node) node The node to search under.
+         */
         public del(value: number, node?: Node): void {
             node = (!node) ? this.root : node;
 
