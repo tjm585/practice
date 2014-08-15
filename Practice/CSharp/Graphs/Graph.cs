@@ -48,6 +48,50 @@ namespace CSharp.Graphs
             var edge = new Edge(a, b, weight);
             this.edges.Add(edge);
         }
+
+        /// <summary>
+        /// Returns an array of vertices in the graph.
+        /// </summary>
+        /// <returns></returns>
+        public Vertex[] GetVertices()
+        {
+            return this.vertices.Values.ToArray();
+        }
+
+        public Vertex[] GetAdjacentVertices(Vertex vertex)
+        {
+            // TODO:
+            return null;
+        }
+
+        /// <summary>
+        /// Creates a string representing the graph.
+        /// </summary>
+        /// <returns></returns>
+        public string PrintGraph()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var edge in this.edges)
+            {
+                sb.AppendLine(edge.ToString());
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Prints a demo of the graph.
+        /// </summary>
+        public static void Demo()
+        {
+            Graph graph = new Graph();
+            graph.AddEdge(new Vertex("Hello"), new Vertex("World"), 20);
+            graph.AddEdge(new Vertex("Foo"), new Vertex("World"), 10);
+            graph.AddEdge(new Vertex("Foo"), new Vertex("Bar"), 30);
+
+            Console.WriteLine(graph.PrintGraph());
+            Console.Read();
+        }
     }
 
     /// <summary>
@@ -118,6 +162,11 @@ namespace CSharp.Graphs
         {
             get;
             set;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}->{1}, weight: {2}", this.vertices[0].Value, this.vertices[1].Value, this.Weight);
         }
     }
 }

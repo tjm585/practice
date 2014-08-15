@@ -1,4 +1,5 @@
 ﻿using CSharp.DynamicProgramming.Fibonacci;
+using CSharp.Graphs;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,7 +13,8 @@ namespace CSharp
     {
         static void Main(string[] args)
         {
-            Fibonacci.Run();
+            //Fibonacci.Run();
+            Graph.Demo();
         }
     }
 }
