@@ -37,10 +37,18 @@ namespace CSharp.Graphs
             {
                 this.vertices.Add(a.Id, a);
             }
+            else
+            {
+                a = this.vertices[a.Id];
+            }
 
             if (!this.vertices.ContainsKey(b.Id))
             {
                 this.vertices.Add(b.Id, b);
+            }
+            else
+            {
+                b = this.vertices[b.Id];
             }
 
             // add the new edge.
@@ -58,10 +66,18 @@ namespace CSharp.Graphs
             return this.vertices.Values.ToArray();
         }
 
-        public Vertex[] GetAdjacentVertices(Vertex vertex)
+        public Edge[] GetEdges(Vertex vertex)
         {
-            // TODO:
-            return null;
+            List<Edge> vertexEdges = new List<Edge>();
+            foreach (var edge in this.edges)
+            {
+                if (edge.ContainsVertex(vertex))
+                {
+                    vertexEdges.Add(edge);
+                }
+            }
+
+            return vertexEdges.ToArray();
         }
 
         /// <summary>
@@ -155,6 +171,22 @@ namespace CSharp.Graphs
             Weight = weight;
         }
 
+        public Vertex VertexA
+        {
+            get
+            {
+                return this.vertices[0];
+            }
+        }
+
+        public Vertex VertexB
+        {
+            get
+            {
+                return this.vertices[1];
+            }
+        }
+
         /// <summary>
         /// Gets or sets the weight of the edge.
         /// </summary>
@@ -162,6 +194,27 @@ namespace CSharp.Graphs
         {
             get;
             set;
+        }
+
+        public bool ContainsVertex(Vertex vertex)
+        {
+            return (VertexA.Id == vertex.Id || VertexB.Id == vertex.Id);
+        }
+
+        public Vertex GetOtherVertex(Vertex vertex)
+        {
+            if (VertexA.Id == vertex.Id)
+            {
+                return VertexB;
+            }
+            else if (VertexB.Id == vertex.Id)
+            {
+                return VertexA;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public override string ToString()

@@ -1,5 +1,6 @@
 ﻿using CSharp.DynamicProgramming.Fibonacci;
 using CSharp.Graphs;
+using CSharp.Graphs.Dijkstra;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,7 +15,8 @@ namespace CSharp
         static void Main(string[] args)
         {
             //Fibonacci.Run();
-            Graph.Demo();
+            //Graph.Demo();
+            Dijkstra.Demo();
         }
     }
 }
